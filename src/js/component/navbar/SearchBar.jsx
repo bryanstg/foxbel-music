@@ -3,7 +3,7 @@ import { Context } from "../../store/appContext";
 
 export const SearchBar = () => {
 	const { store, actions } = useContext(Context);
-	const [search, setSearch] = useState();
+	const [search, setSearch] = useState("");
 	return (
 		<React.Fragment>
 			<div className="search-bar">
@@ -17,8 +17,8 @@ export const SearchBar = () => {
 						setSearch(event.target.value);
 					}}
 					onKeyDown={event => {
-						if (search && event.key == "Enter") {
-							actions.search(search);
+						if (search != "" && event.key == "Enter") {
+							actions.searchWithSDK(search);
 						}
 					}}
 				/>
