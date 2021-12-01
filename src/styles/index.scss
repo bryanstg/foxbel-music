@@ -1,3 +1,18 @@
 /* 
     General Styles
 */
+
+@import "./variables.scss";
+@import "./component/Footer";
+@import "./component/navbar/Menu";
+@import "./component/navbar/User";
+@import "./component/navbar/NavBar";
+@import "./component/navbar/SearchBar";
+
+@import "./views/Home";
+
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}

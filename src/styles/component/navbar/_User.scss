@@ -1,0 +1,39 @@
+@import "./../../variables.scss";
+
+.user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.user__logged {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0 0.5rem;
+}
+.user__logged--icon {
+    color: $principal-color;
+    margin: 0 0.5rem;
+}
+.user__logged--name {
+    @include regular-16-white;
+    color: $gray2;
+}
+.user__loggin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0 0.5rem;
+}
+.user__login--button {
+    @include bold-14-qs;
+    color: $soft-main;
+
+    background-color: $principal-color;
+    width: 7.3125rem;
+    height: 2.25rem;
+    border: 0;
+    border-radius: 6.25rem;
+}

@@ -1,0 +1,6 @@
+@import "./../../variables.scss";
+
+.home__menu {
+    grid-area: menu;
+    background-color: $secondary-dark-color;
+}

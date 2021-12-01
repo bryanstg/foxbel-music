@@ -1,0 +1,84 @@
+/* Colors */
+$principal-color: #E86060;
+$secondary-dark-color: #662323;
+$terciary-soft-color: #FF7676;
+
+$strong-gray: #555555;
+$gray: #828282;
+$gray2: #4F4F4F;
+$soft-gray: #BDBDBD;
+
+$soft-main: #FFFFFF;
+
+$font-color: #C4C4C4;
+
+/* Fonts */
+//Main Font Quicksand
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+$main-font: 'Quicksand', sans-serif;
+
+/* Font sizes */
+
+@mixin regular-12-qs {
+    /* 12-regular-qs */
+    font-family: $main-font;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 0.75rem;
+    line-height: 0.9375rem;
+}
+
+@mixin bold-14-qs {
+    /* 14-bold-qs */
+    font-family: Quicksand;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 0.875rem;
+    line-height: 1.0625rem;
+    /* identical to box height */
+}
+
+@mixin regular-12-white-lineheight-20-paragraph {
+    /* 12-regular-white-lineheight-20-paragraph */
+    font-family: Quicksand;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 0.75rem;
+    line-height: 1.25rem;
+    /* identical to box height */
+}
+
+@mixin regular-14-white {
+    /* 14-regular-white */
+    font-family: Quicksand;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 0.875rem;
+    line-height: 1.0625rem;
+    /* identical to box height */
+    
+}
+
+@mixin bold-22-white {
+    /* 22-bold-white */
+    font-family: Quicksand;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1.375rem;
+    line-height: 1.6875rem;
+    /* identical to box height */
+    
+}
+
+@mixin regular-16-white {
+    /* 16-regular-white */
+    font-family: Quicksand;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1rem;
+    line-height: 1.25rem;
+    /* identical to box height */
+    
+
+}

@@ -1,0 +1,39 @@
+@import "./../variables.scss";
+
+.home-box {
+    display: grid;
+    grid-template-columns: repeat( 4, 1fr);
+    grid-template-rows: repeat( 4, 1fr) 78px;
+    grid-template-areas: 
+        "main main main main"
+        "main main main main"
+        "main main main main"
+        "main main main main"
+        "menu music music music"
+    ;
+    width: 100%;
+    height: 100vh;
+}
+
+.home__music-player {
+    grid-area: music;
+    background-color: #EB5757;
+}
+.home__main {
+    grid-area: main;
+    background-color: $soft-main;
+}
+
+@media only screen and (min-width: 670px) {
+    .home-box {
+        grid-template-columns: 330px repeat(3, 1fr);
+        grid-template-rows: repeat( 4, 1fr) 100px;
+        grid-template-areas: 
+        "menu main main main"
+        "menu main main main"
+        "menu main main main"
+        "menu main main main"
+        "music music music music"
+    ;
+    }
+}
