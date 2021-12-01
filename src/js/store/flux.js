@@ -13,7 +13,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				results: undefined
 			},
 			charts: {
-				tracks: [""]
+				tracks: [],
+				albums: [],
+				playlists: []
 			}
 		},
 		actions: {
@@ -46,7 +48,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({
 						charts: {
 							...store.charts,
-							tracks: response.tracks.data
+							tracks: response.tracks.data,
+							albums: response.albums.data,
+							playlists: response.playlists.data
 						}
 					});
 					const artistId = response.tracks.data[0].artist.id;
