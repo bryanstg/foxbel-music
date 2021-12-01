@@ -7,8 +7,8 @@ export const SearchFirstResult = () => {
 	const { store, actions } = useContext(Context);
 	const firstResult = store.search.firstResult.data
 		? store.search.firstResult.data
-		: store.charts.tracks && store.charts.tracks[0];
-	console.log(firstResult);
+		: store.charts.album && store.charts.tracks[0];
+	console.log(window.innerWidth);
 	return (
 		<React.Fragment>
 			{firstResult && store.charts.tracks ? (
@@ -24,13 +24,19 @@ export const SearchFirstResult = () => {
 						<div
 							className="first__info"
 							style={{
-								backgroundImage: `url(${firstResult.artist.picture_big})`
+								background: `linear-gradient(0deg, rgba(167, 0, 0, 0.7), rgba(167, 0, 0, 0.7)), url(${
+									window.innerWidth > 670 ? firstResult.artist.picture_big : "none"
+								})`
 							}}>
 							<div className="first__info--album">
-								<h2 className="album__title">{firstResult.album.title}</h2>
+								<h2 className="album__title">{firstResult.album && store.firstResult.album.title}</h2>
 								<div className="album__info">
-									<p className="album__info--descrip">{firstResult.album.label}</p>
-									<div className="album__info--follows">{firstResult.artist.nb_fan}</div>
+									<p className="album__info--descrip">
+										{store.firstResult.album ? store.firstResult.album.label : "no cargué"}
+									</p>
+									<div className="album__info--follows">
+										{store.firstResult.artist && store.firstResult.artist.nb_fan}
+									</div>
 								</div>
 							</div>
 							<div className="first__info--intro" />
