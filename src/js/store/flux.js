@@ -4,62 +4,87 @@ const getState = ({ getStore, getActions, setStore }) => {
 	const API_KEY = process.env.API_KEY;
 	return {
 		store: {
-			user: {
-				logged: false,
-				code: "",
-				token: "frN2Vue28wKYGAdy4waH1p4n5YiW01MaRrqf6iX81RVd7XBqjt"
-			},
 			search: {
-				firstResult: undefined,
-				result: undefined
+				firstResult: {
+					data: undefined,
+					artist: undefined,
+					album: undefined
+				},
+				results: undefined
+			},
+			charts: {
+				tracks: [""]
 			}
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
-			userLogged: async status => {
-				//Status should be a bolean: true is logged.
+			searchWithSDK: toSearch => {
 				const store = getStore();
-				const loggUrl = `https://connect.deezer.com/oauth/auth.php?app_id=${APP_ID}&redirect_uri=${REDIRECTION}&perms=basic_access,email,offline_access`;
-
-				setStore({
-					user: {
-						...store.user,
-						logged: status
-					}
-				});
-			},
-			setCode: code => {
-				const store = getStore();
-				setStore({
-					user: {
-						...store.user,
-						code: code
-					}
-				});
-			},
-			setToken: async code => {
-				const url = `https://connect.deezer.com/oauth/access_token.php?app_id=${APP_ID}&secret=${API_KEY}&code=${code}`;
-				const request = await fetch(url);
-				console.log(request);
-				if (request.ok) {
-					const body = await request.json;
-				}
-			},
-			search: async toSearch => {
-				try {
-					const apiUri = `https://api.deezer.com/search?q=${toSearch}`;
-					const request = await fetch(apiUri, {
-						method: "GET",
-						headers: { "Content-type": "application/json" }
+				const actions = getActions();
+				DZ.api(`/search?q=${toSearch}`, function(response) {
+					setStore({
+						search: {
+							...store.search,
+							result: response.data,
+							firstResult: {
+								...store.search.firstResult,
+								data: response.data[0]
+							}
+						}
 					});
-					console.log(request);
-					if (request.ok) {
-						const body = await request.json;
-						console.log(body);
-					}
-				} catch (error) {
-					console.log(error);
-				}
+					const artistId = response.data[0].artist.id;
+					actions.getFirstArtist(artistId);
+
+					const albumId = response.data[0].album.id;
+					actions.getAlbum(albumId);
+				});
+			},
+			getChart: () => {
+				const store = getStore();
+				const actions = getActions();
+				DZ.api(`/chart`, function(response) {
+					setStore({
+						charts: {
+							...store.charts,
+							tracks: response.tracks.data
+						}
+					});
+					const artistId = response.tracks.data[0].artist.id;
+					actions.getFirstArtist(artistId);
+
+					const albumId = response.tracks.data[0].album.id;
+					actions.getAlbum(albumId);
+				});
+			},
+			getFirstArtist: id => {
+				const store = getStore();
+				DZ.api(`/artist/${id}`, function(response) {
+					console.log(response);
+					setStore({
+						search: {
+							...store.search,
+							firstResult: {
+								...store.search.firstResult,
+								artist: response
+							}
+						}
+					});
+				});
+			},
+			getAlbum: id => {
+				const store = getStore();
+				DZ.api(`/album/${id}`, function(response) {
+					console.log(response);
+					setStore({
+						search: {
+							...store.search,
+							firstResult: {
+								...store.search.firstResult,
+								album: response
+							}
+						}
+					});
+				});
 			}
 		}
 	};
