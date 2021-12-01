@@ -1,0 +1,39 @@
+@import "./../../variables.scss";
+
+.charts-box {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-flow: column nowrap;
+    min-width: 300px;
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    max-width: 55.625rem;
+    margin: 1rem 1.5rem;
+}
+.charts__title {
+    @include bold-22-white;
+    color: $principal-color;
+}
+.charts__list {
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    flex-flow: row nowrap;
+    width: auto;
+    height: 15rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin: 0.5rem 0;
+}
+.charts__list--title {
+    @include bold-22-white;
+    color: $principal-color;
+}
+
+@media only screen and (min-width: 670px) {
+    .charts-box {
+        margin: 1rem 2.5rem;
+    }
+}
