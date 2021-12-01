@@ -5,25 +5,32 @@ import { Loading } from "./../Loading.jsx";
 
 export const SearchFirstResult = () => {
 	const { store, actions } = useContext(Context);
-	const firstResult = store.search.firstResult;
+	const firstResult = store.search.firstResult.data
+		? store.search.firstResult.data
+		: store.charts.tracks && store.charts.tracks[0];
+	console.log(firstResult);
 	return (
 		<React.Fragment>
-			{firstResult ? (
+			{firstResult && store.charts.tracks ? (
 				<div className="first-box">
 					<div className="first">
-						<div
+						<button
 							className="first__repr"
 							style={{
 								backgroundImage: `url(${firstResult.album.cover_medium})`
 							}}>
 							<i className="first__repr--icon fas fa-play" />
-						</div>
-						<div className="first__info">
+						</button>
+						<div
+							className="first__info"
+							style={{
+								backgroundImage: `url(${firstResult.artist.picture_big})`
+							}}>
 							<div className="first__info--album">
 								<h2 className="album__title">{firstResult.album.title}</h2>
 								<div className="album__info">
 									<p className="album__info--descrip">{firstResult.album.label}</p>
-									<div className="album__info--follows">{firstResult.album.fans}</div>
+									<div className="album__info--follows">{firstResult.artist.nb_fan}</div>
 								</div>
 							</div>
 							<div className="first__info--intro" />
