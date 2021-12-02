@@ -23,11 +23,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			searchWithSDK: toSearch => {
 				const store = getStore();
 				const actions = getActions();
-				DZ.api(`/search?q=${toSearch}`, function(response) {
+				DZ.api(`/search?q="${toSearch}"`, function(response) {
+					console.log(response);
 					setStore({
 						search: {
 							...store.search,
-							result: response.data,
+							results: response.data,
 							firstResult: {
 								...store.search.firstResult,
 								data: response.data[0]
@@ -35,10 +36,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					});
 					const artistId = response.data[0].artist.id;
-					actions.getFirstArtist(artistId);
+					actions.getFirstResultArtist(artistId);
 
 					const albumId = response.data[0].album.id;
-					actions.getAlbum(albumId);
+					actions.getFirstResultAlbum(albumId);
 				});
 			},
 			getChart: () => {
@@ -53,14 +54,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 							playlists: response.playlists.data
 						}
 					});
-					const artistId = response.tracks.data[0].artist.id;
-					actions.getFirstArtist(artistId);
-
-					const albumId = response.tracks.data[0].album.id;
-					actions.getAlbum(albumId);
 				});
 			},
-			getFirstArtist: id => {
+			getFirstResultArtist: id => {
 				const store = getStore();
 				DZ.api(`/artist/${id}`, function(response) {
 					console.log(response);
@@ -75,7 +71,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 				});
 			},
-			getAlbum: id => {
+			getFirstResultAlbum: id => {
 				const store = getStore();
 				DZ.api(`/album/${id}`, function(response) {
 					console.log(response);
