@@ -1,0 +1,98 @@
+@import "./../../variables.scss";
+
+.home__menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: menu;
+    background-color: $secondary-dark-color;
+}
+
+.menu-box {
+    display: none;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    padding: 3.125rem 2.5rem 0 2.5rem;
+}
+.menu__hamburguer {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: column nowrap;
+    align-items: center;
+    width: 2rem;
+    height: 1.3rem;
+    
+}
+.menu__hamburguer--line {
+    width: 2rem;
+    height: 0.2rem;
+    background-color: $soft-main;
+    border-radius: 100px;
+}
+.close {
+    display: none;
+}
+.menu-open {
+    display: flex;
+    position: absolute;
+    left: 0;
+    bottom: 4.875rem;
+    background-color: $secondary-dark-color;
+}
+.menu__logo {
+    width: 100%;
+    height: 3.75rem;
+    background-position: center left;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.menu__section {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.section__title {
+    @include bold-22-white;
+    color: $soft-main;
+    margin-top: 1.875rem;
+}
+.section__link {
+    @include regular-16-white;
+    color: $soft-main;
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    &:active {
+        color: $principal-color;
+        font-weight: bold;
+    }
+    &:hover {
+        color: $principal-color;
+        font-weight: bold;
+    }
+}
+.active {
+    color: $principal-color;
+    font-weight: bold;
+    &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 5px;
+        height:  1rem;
+        background-color: $principal-color;
+    }
+}
+@media only screen and (min-width: 670px) {
+    .home__menu {
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    .menu-box {
+        display: flex;
+        width: 100%;
+        position: inherit;
+        left: auto;
+        bottom: auto;
+    }
+}
