@@ -19,4 +19,11 @@
     height: auto;
     display: flex;
     flex-flow: row wrap;
+    justify-content: center;
+}
+
+@media only screen and (min-width: 670px) {
+    .results__music {
+        //justify-content: flex-start;
+    }
 }
