@@ -1,0 +1,22 @@
+@import "./../../variables.scss";
+
+.results-box {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-content: center;
+    width: 100%;
+    min-height: 50vh;
+    height: auto;
+    padding: 0;
+}
+.results__title {
+    @include bold-22-white;
+    color: $principal-color;
+}
+.results__music {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-flow: row wrap;
+}

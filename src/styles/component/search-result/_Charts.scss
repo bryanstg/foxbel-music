@@ -2,15 +2,13 @@
 
 .charts-box {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-content: center;
     flex-flow: column nowrap;
     min-width: 300px;
     width: 100%;
     height: auto;
-    min-height: 100%;
     max-width: 55.625rem;
-    margin: 1rem 1.5rem;
 }
 .charts__title {
     @include bold-22-white;
@@ -26,7 +24,21 @@
     overflow-x: auto;
     overflow-y: hidden;
     margin: 0.5rem 0;
+
+    &::-webkit-scrollbar {
+        height: 0.5rem;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: $soft-gray;
+        border-radius: 1rem;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: $principal-color;
+        border-radius: 1rem;
+    }
 }
+
 .charts__list--title {
     @include bold-22-white;
     color: $principal-color;
@@ -34,6 +46,6 @@
 
 @media only screen and (min-width: 670px) {
     .charts-box {
-        margin: 1rem 2.5rem;
+        margin: 1rem 0;
     }
 }
