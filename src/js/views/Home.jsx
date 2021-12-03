@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Menu } from "../component/Menu.jsx";
+import { Menu } from "../component/menu/Menu.jsx";
 import { Main } from "./../component/Main.jsx";
 import { MusicPlayer } from "./../component/MusicPlayer.jsx";
 
