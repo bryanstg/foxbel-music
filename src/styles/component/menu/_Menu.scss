@@ -6,6 +6,20 @@
     align-items: center;
     grid-area: menu;
     background-color: $secondary-dark-color;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 0.5rem;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: $soft-gray;
+        border-radius: 1rem;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: $principal-color;
+        border-radius: 1rem;
+    }
 }
 
 .menu-box {
