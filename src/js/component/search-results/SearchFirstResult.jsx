@@ -2,16 +2,15 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { Context } from "./../../store/appContext";
 import { Loading } from "./../Loading.jsx";
+import millify from "millify";
 
 export const SearchFirstResult = () => {
 	const { store, actions } = useContext(Context);
-	const firstResult = store.search.firstResult.data
-		? store.search.firstResult.data
-		: store.charts.album && store.charts.tracks[0];
-	console.log(window.innerWidth);
+	const firstResult = store.search.firstResult;
+
 	return (
 		<React.Fragment>
-			{firstResult && store.charts.tracks ? (
+			{firstResult.album && firstResult.artist ? (
 				<div className="first-box">
 					<div className="first">
 						<button
@@ -24,26 +23,29 @@ export const SearchFirstResult = () => {
 						<div
 							className="first__info"
 							style={{
-								background: `linear-gradient(0deg, rgba(167, 0, 0, 0.7), rgba(167, 0, 0, 0.7)), url(${
-									window.innerWidth > 670 ? firstResult.artist.picture_big : "none"
+								backgroundImage: `linear-gradient(266deg, rgba(195,136,136,0.3841911764705882) 0%, rgba(195,136,136,1) 50%), url(${
+									window.innerWidth > 670 ? firstResult.artist.picture_big : ""
 								})`
 							}}>
 							<div className="first__info--album">
-								<h2 className="album__title">{firstResult.album && store.firstResult.album.title}</h2>
+								<h2 className="album__title">{firstResult.album.title}</h2>
 								<div className="album__info">
-									<p className="album__info--descrip">
-										{store.firstResult.album ? store.firstResult.album.label : "no cargué"}
-									</p>
+									<p className="album__info--description">{firstResult.album.label}</p>
 									<div className="album__info--follows">
-										{store.firstResult.artist && store.firstResult.artist.nb_fan}
+										{millify(firstResult.artist.nb_fan, {
+											precision: 3,
+											space: true
+										})}
 									</div>
 								</div>
 							</div>
 							<div className="first__info--intro" />
 							<div className="first__info__actions">
-								<button className="info__actions--play" />
-								<button className="info__actions--follow" />
-								<button className="info__actions--more" />
+								<button className="info__actions--play">Reproducir</button>
+								<button className="info__actions--follow">Follow</button>
+								<div className="info__actions--more">
+									<button className="more" />
+								</div>
 							</div>
 						</div>
 					</div>

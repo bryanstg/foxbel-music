@@ -2,7 +2,7 @@
 
 .first-box {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
     height: auto;
@@ -24,6 +24,7 @@
     align-content: center;
     width: 15.625rem;
     height: 15.625rem;
+    border: 0;
 }
 .first__repr--icon {
     width: auto;
@@ -33,17 +34,105 @@
 }
 .first__info {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-content: center;
     flex-flow: column nowrap;
     width: 15.625rem;
     height: 15.625rem;
+    padding: 2.5rem;
+}
+.first__info--album {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+}
+.album__title {
+    @include bold-22-white;
+    color: $soft-main;
+    margin: 0;
+}
+.album__info {
+    @include regular-14-white;
+    color: $soft-main;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.album__info--description {
+    margin: 0;
+} 
+.album__info--follows {
+    color: $secondary-dark-color;
+    margin-left: 1rem;
 }
 .album__info--album {
     @include bold-22-white;
     color: $soft-main;
 }
+.first__info__actions {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    height: 1.9375rem;
+}
+.info__actions--play, .info__actions--follow {
+    @include regular-14-white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 7.3125rem;
+    border: 0;
+    margin-right: 1.25rem;
+    border-radius: 100px;
+    opacity: 1;
+}
+.info__actions--play {
+    @include regular-14-white;
+    color: $soft-main;
+    background-color: $principal-color;
+}
+.info__actions--follow {
+    color: $principal-color;
+    background-color: transparent;
+    border: 1px solid $principal-color;
 
+}
+.info__actions--more {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.5rem;
+    height: 1.9375rem;
+    cursor: pointer;
+}
+.more {
+    width: 4px;
+    height: 4px;
+    background-color: $soft-main;
+    border-radius: 50%;
+    border: 0;
+}
+.more::before, .more::after {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background-color: $soft-main;
+    border-radius: 50%;
+    border: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+.more::before {
+    left: 6px;
+}
+.more::after {
+    right: 6px;
+}
 @media only screen and (min-width: 670px) {
     .first-box {
         height: 15.625rem;
@@ -54,9 +143,8 @@
     }
     .first__info {
         width: calc(100% - 15.625rem);
-        background-size: cover;
         background-position: center right;
-        background-repeat: no-repeat;
-        opacity: 0.5;
+        background-size: cover;
+        background-repeat: no-repeat; 
     }
 }
