@@ -8,25 +8,26 @@ export const User = () => {
 	const REDIRECTION = process.env.REDIRECTION;
 	const API_KEY = process.env.API_KEY;
 
-	const loggUrl = `https://connect.deezer.com/oauth/auth.php?app_id=${APP_ID}&redirect_uri=${REDIRECTION}&perms=basic_access,email,offline_access`;
-	useEffect(() => {
-		if (window.location.href.includes("code=")) {
-			const actualUrl = window.location.href;
-			const reFilteredCodeUrl = /&code(=[^&]*)?|^code(=[^&]*)?&?/;
-			const [first, last] = actualUrl.split("?");
-			const codeMatch = last.match(reFilteredCodeUrl);
-			const code = codeMatch[0].split("=")[1];
-			actions.setCode(code);
-			const urlToken = `https://connect.deezer.com/oauth/access_token.php?app_id=${APP_ID}&secret=${API_KEY}&code=${code}`;
-			window.location.replace(urlToken);
-			const text = document.querySelector("text");
-			console.log(text);
-		}
-	}, []);
+	const handleLogin = () => {
+		DZ.login(
+			function(response) {
+				if (response.authResponse) {
+					console.log("Welcome!  Fetching your information.... ");
+					DZ.api("/user/me", function(response) {
+						console.log("Good to see you, " + response.name + ".");
+					});
+				} else {
+					console.log("User cancelled login or did not fully authorize.");
+				}
+			},
+			{ perms: "basic_access,email,offline_access" }
+		);
+	};
+
 	return (
 		<div className="user">
 			<div className="user__logged">
-				<i className="user__logged--icon fas fa-user-alt" />
+				<i className="user__logged--icon fas fa-user-alt" onClick={handleLogin} />
 				<div className="user__logged--name">{`Francisco M.`}</div>
 			</div>
 		</div>
