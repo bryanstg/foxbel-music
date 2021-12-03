@@ -3,14 +3,16 @@
 */
 
 @import "./variables.scss";
-@import "./component/Footer";
+@import "./component/Main";
 @import "./component/navbar/Menu";
 @import "./component/navbar/User";
 @import "./component/navbar/NavBar";
 @import "./component/navbar/SearchBar";
 @import "./component/search-result/SearchFirstResult";
 @import "./component/search-result/Charts";
+@import "./component/search-result/Results";
 @import "./component/music/Music";
+@import "./component/music/MusicPlayer";
 
 @import "./views/Home";
 
