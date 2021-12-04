@@ -51,7 +51,9 @@ export const SearchFirstResult = () => {
 					</div>
 				</div>
 			) : (
-				<Loading />
+				<div className="loading-box">
+					<Loading />
+				</div>
 			)}
 		</React.Fragment>
 	);

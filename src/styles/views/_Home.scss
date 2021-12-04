@@ -2,8 +2,8 @@
 
 .home-box {
     display: grid;
-    grid-template-columns: 78px repeat( 3, 1fr);
-    grid-template-rows: repeat( 4, 1fr) 78px;
+    grid-template-columns: 8vh repeat( 3, 1fr);
+    grid-template-rows: repeat( 4, 1fr) 8vh;
     grid-template-areas: 
         "main main main main"
         "main main main main"

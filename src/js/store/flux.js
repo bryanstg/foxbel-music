@@ -16,6 +16,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				tracks: [],
 				albums: [],
 				playlists: []
+			},
+			player: {
+				counter: 0,
+				playlist: [],
+				back: undefined,
+				actual: undefined,
+				next: undefined
 			}
 		},
 		actions: {
@@ -40,6 +47,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					const albumId = response.data[0].album.id;
 					actions.getFirstResultAlbum(albumId);
+
+					const actualTrack = response.data[0];
+					actions.setActualPlayerTrack(actualTrack);
 				});
 			},
 			getChart: () => {
@@ -54,6 +64,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							playlists: response.playlists.data
 						}
 					});
+					actions.setActualPlayerTrack(response.tracks.data[0]);
 				});
 			},
 			getFirstResultArtist: id => {
@@ -85,6 +96,69 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					});
 				});
+			},
+			setActualPlayerTrack: track => {
+				const store = getStore();
+				setStore({
+					player: {
+						...store.player,
+						actual: track
+					}
+				});
+			},
+			setNextPlayerTrack: track => {
+				const store = getStore();
+
+				setStore({
+					player: {
+						...store.player,
+						next: track,
+						counter: store.player.counter + 1
+					}
+				});
+			},
+			setBackPlayerTrack: track => {
+				const store = getStore();
+
+				setStore({
+					player: {
+						...store.player,
+						back: track,
+						counter: store.player.counter - 1
+					}
+				});
+			},
+			getPlayerPlaylist: playlistUrl => {
+				const store = getStore();
+				const actions = getActions();
+				DZ.api(`/${playlistUrl}`, function(response) {
+					setStore({
+						player: {
+							...store.player,
+							actual: response.data[0],
+							next: response.data[1],
+							playlist: response.data
+						}
+					});
+				});
+			},
+			handlePlaylistTracks: async object => {
+				console.log(object);
+				const actions = getActions();
+				if (object.type == "podcast") return;
+				if (object.type != "track") {
+					const getPlaylist = await actions.getPlayerPlaylist(
+						object.tracklist.replace("https://api.deezer.com/", "")
+					);
+				}
+				if (object.type == "track") {
+					const getPlaylist = await actions.getPlayerPlaylist(
+						object.artist.tracklist.replace("https://api.deezer.com/", "")
+					);
+				}
+			},
+			handleNextSong: () => {
+				const store = getStore();
 			}
 		}
 	};

@@ -19,12 +19,16 @@ export const Menu = () => {
 	const windowSize = window.innerWidth;
 	return (
 		<React.Fragment>
-			<div className={`menu__hamburguer ${windowSize > 670 ? "close" : ""}`}>
+			<div
+				className={`menu__hamburguer ${windowSize < 670 && active ? "" : "close"}`}
+				onClick={() => {
+					setActive(prev => !prev);
+				}}>
 				<div className="menu__hamburguer--line" />
 				<div className="menu__hamburguer--line" />
 				<div className="menu__hamburguer--line" />
 			</div>
-			<div className="menu-box">
+			<div className={`menu-box ${active ? "menu-open" : ""}`}>
 				<div className="menu__logo" style={{ backgroundImage: `url(${FoxbelLogo})` }}>
 					{""}
 				</div>

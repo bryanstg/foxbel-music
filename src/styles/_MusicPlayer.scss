@@ -1,0 +1,135 @@
+@import "./variables.scss";
+
+.music-player-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(100% - 8vh);
+    height: 8vh;
+}
+.music-player__song {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.music-player__song--cover {
+    width: 8vh;
+    height: 8vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.music-player__song--info {
+    width: auto;
+    height: 100%;
+    padding: 0.5rem 0 0 0.5rem;
+}
+.song__title {
+    @include bold-14-qs;
+    color: $soft-main;
+}
+.song__artist {
+    @include regular-12-qs;
+    color: $soft-main;
+    margin-top: 0.5rem;
+}
+.music-player__repr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+    min-height: 8vh;
+    height: auto;
+    max-height: 100px;
+    margin-left: auto;
+}
+.music-player__repr--back, .music-player__repr--next  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+}
+.music-player__repr--play{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $terciary-soft-color;
+    border: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0.8rem;
+    border-radius: 50%;
+}
+.play__icon {
+    color: $soft-main;
+    font-size: 1.125rem;
+    text-align: center;
+}
+.back__icon, .next__icon {
+    color: $soft-main;
+    font-size: 1.25rem;
+    margin: 0 0.5rem;
+}
+.music-player__volume {
+    display: none;
+}
+.volume__input {
+    display: none;
+}
+.volume__icon {
+    display: none;
+}
+@media only screen and (min-width: 670px) {
+    .music-player-box {
+        height: 100px;
+    }
+    .music-player__song--cover {
+        width: 100px;
+        height: 100px;
+    }
+    .music-player__song--info {
+        padding: 1.25rem;
+    }
+    .music-player__repr {
+        margin-left: 0;
+    }
+    .music-player__repr--play {
+        width: 3.5rem;
+        height: 3.5rem;
+    }
+    .music-player__volume {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-right: 1rem;
+    }
+    .volume__input {
+        display: flex;
+        width: 6.25rem;
+        margin-right: 2.5rem;
+    }
+    .volume__icon {
+        display: flex;
+        color: $soft-main;
+        font-size: 2.25rem;
+    }
+    input[type=range]::-webkit-slider-runnable-track {
+        width: 2.25rem;
+        height: 0.4rem;
+        cursor: pointer;
+        background: #ffffff;
+        border-radius: 100px;
+    }
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        background-color: $soft-main;
+        cursor: pointer;
+        margin-top: -4px;
+    }
+}
